@@ -41,7 +41,7 @@ export const computeResults = (
   let seatCount = 0, flipCount = 0
   
   const rows = districts.map(({ district, party_votes: originalVotes }) => {
-    const newVotes = { ...originalVotes, [TARGET_PARTY]: originalVotes[TARGET_PARTY] || 0 }
+    const newVotes: PartyVotes = { ...originalVotes, [TARGET_PARTY]: originalVotes[TARGET_PARTY] || 0 }
     
     // Apply transfers
     Object.entries(transferConfig).forEach(([party, pct]) => {
