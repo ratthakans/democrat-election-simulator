@@ -24,7 +24,9 @@ function LoadingFallback() {
   )
 }
 
-const Views = {
+// ─── View Registry (Controller-level routing) ──────────────────────────────────
+
+const VIEW_MAP = {
   dashboard: DashboardView,
   results2569: Results2569View,
   'coalition-builder': CoalitionBuilderView,
@@ -34,16 +36,19 @@ const Views = {
   'monte-carlo': MonteCarloView,
 } as const
 
+// ─── Main Layout Component ─────────────────────────────────────────────────────
+
 export default function MainApp() {
   const { currentView } = useStore()
-  const ViewComponent = Views[currentView as keyof typeof Views] || DashboardView
+  const ViewComponent = VIEW_MAP[currentView as keyof typeof VIEW_MAP] ?? DashboardView
 
   return (
     <div className="min-h-screen bg-slate-50">
       <Header />
       <div className="flex max-w-[1800px] mx-auto pt-16">
         <Sidebar />
-        <main className="flex-1 min-w-0 ml-72 p-6 pb-12">
+        {/* ml-64 matches sidebar w-64 */}
+        <main className="flex-1 min-w-0 ml-64 p-6 pb-12">
           <Suspense fallback={<LoadingFallback />}>
             <ViewComponent />
           </Suspense>
