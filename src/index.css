@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --gradient-start: 237deg;
+  }
+  
+  body {
+    @apply bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-950 dark:via-blue-950 dark:to-indigo-950;
+    @apply min-h-screen antialiased;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply backdrop-blur-xl bg-white/10 dark:bg-black/10;
+    @apply border border-white/20 dark:border-white/10;
+    @apply shadow-xl shadow-black/5;
+  }
+  
+  .glass-card {
+    @apply glass rounded-2xl p-6;
+    @apply transition-all duration-300;
+    @apply hover:shadow-2xl hover:shadow-blue-500/10;
+    @apply hover:-translate-y-1;
+  }
+  
+  .glass-button {
+    @apply glass rounded-xl px-6 py-3;
+    @apply font-semibold;
+    @apply hover:bg-white/20 dark:hover:bg-white/5;
+    @apply active:scale-95;
+    @apply transition-all duration-200;
+  }
+  
+  .glass-input {
+    @apply glass rounded-lg px-4 py-2;
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500/50;
+    @apply placeholder-gray-400 dark:placeholder-gray-500;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400;
+    @apply bg-clip-text text-transparent;
+  }
+  
+  .glow {
+    text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  }
+}

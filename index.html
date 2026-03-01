@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบวิเคราะห์การเลือกตั้ง | Standalone</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Prompt:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Dependencies -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Prompt', 'sans-serif'],
+                    },
+                    colors: {
+                        democrat: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --bg-light: #ffffff;
+            --bg-dark: #0f172a;
+            --text-main: #1e293b;
+            --text-muted: #475569;
+            --accent: #0284c7;
+        }
+
+        @layer components {
+            .card-clean {
+                @apply bg-white dark:bg-slate-900 rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm transition-all;
+            }
+
+            .sidebar-item {
+                @apply flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800;
+            }
+
+            .sidebar-item.active {
+                @apply bg-sky-600 text-white shadow-md;
+            }
+
+            .input-clean {
+                @apply w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:border-sky-500 focus:ring-4 focus:ring-sky-500/10 outline-none transition-all;
+            }
+        }
+
+        body {
+            @apply font-sans antialiased bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100;
+        }
+
+        h1,
+        h2,
+        h3 {
+            @apply tracking-tight font-extrabold;
+        }
+
+        .text-readable {
+            @apply text-slate-900 dark:text-white leading-relaxed;
+        }
+
+        .animate-appear {
+            animation: appear 0.4s ease-out forwards;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(4px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+            border: 2px solid #f1f5f9;
+        }
+
+        .dark ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border: 2px solid #0f172a;
+        }
+
+        /* Fix for Thai Fonts */
+        body {
+            font-family: 'Prompt', 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <!-- Data -->
+    <script src="election_data.js"></script>
+
+    <!-- App Logic -->
+    <script type="text/babel" src="app.js"></script>
+</body>
+
+</html>
